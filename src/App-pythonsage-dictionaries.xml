@@ -3,7 +3,7 @@
 <subsection><title>Colors of Fruits</title>
 <p>In Python and SageMath, a dictionary is a convenient data structure for establishing a relationship between sets of data.  From the point of view of this text, we can think of a dictionary as a concrete realization of a relation between two sets or on a single set.  A dictionary resembles a function in that there is a set of data values called the <c>keys</c>, and for each key, there is a <c>value</c>.  The value associated with a key can be almost anything, but it is most commonly a list.  </p>
 <p>To illustrate the use of dictionaries, we will define a relationship between colors and fruits.  The keys will be a set of colors and values associated with each color will be a list of fruits that can take on that color. We will demonstrate how to initialize the dictionary and how to add to it.  The following series of assignments have no output, so we add a print statement to verify that this cell is completely evaluated.</p>
-<sage xml:id="load-dictionary">
+<sage>
 <input>
 fruit_color={}
 fruit_color['Red']=['apple','pomegranate','blood orange']
@@ -11,37 +11,40 @@ fruit_color['Yellow']=['banana','apple','lemon']
 fruit_color['Green']=['apple','pear','grape','lime']
 fruit_color['Purple']=['plum','grape']
 fruit_color['Orange']=['orange','pineapple']
-print 'done'
+print('done')
 </input>
+<output>
+done
+</output>
 </sage>
-<p>We distinguish a color from a fruit by capitalizing colors but not fruit.  The keys of this dictionary are the colors:</p>
+<p>We distinguish a color from a fruit by capitalizing colors but not fruit.  The keys of this dictionary are the colors.  The <c>keys()</c> method returns an interator; so to get a list of keys we wrap the result with <c>list()</c>.</p>
 <sage>
 <input>
-fruit_color.keys()
+list(fruit_color.keys())
 </input>
 <output>
 ['Purple', 'Orange', 'Green', 'Yellow', 'Red']
 </output>
 </sage>
-<p>As an afterthough, we might add the information that a raspberry is red as follows. You have to be careful in that if 'Red' isn't already in the dictionary, it doesn't have a value. This is why we need an if statement.</p>
+<p>As an afterthought, we might add the information that a raspberry is red as follows. You have to be careful in that if 'Red' isn't already in the dictionary, it doesn't have a value. This is why we need an if statement.</p>
 <sage>
 <input>
 if 'Red' in fruit_color:
-	fruit_color['Red']=fruit_color['Red']+['raspberry']
+    fruit_color['Red']=fruit_color['Red']+['raspberry']
 else:
-	fruit_color['Red']=['raspberry']
+    fruit_color['Red']=['raspberry']
 fruit_color['Red']
 </input>
 <output>
-['apple', 'pomegranate', 'blood orange', 'raspberry', 'raspberry']
+['apple', 'pomegranate', 'blood orange', 'raspberry']
 </output>
 </sage>
 
-<p>A dictionary is iterable, with an iterator taking on values that are the keys.  Here we iterate over the our dictionary to output lists consisting of a color followed by a list of fruits that come in that color.</p> 
+<p>A dictionary is iterable, with an iterator taking on values that are the keys.  Here we iterate over our dictionary to output lists consisting of a color followed by a list of fruits that come in that color.</p> 
 <sage>
 <input>
 for fruit in fruit_color:
-    print [fruit,fruit_color[fruit]]
+    print([fruit,fruit_color[fruit]])
 </input>
 <output>
 ['Purple', ['plum', 'grape']]
@@ -78,7 +81,7 @@ vertex_pos
 <input>
 fruits=Set([ ])
 for v in fruit_color.values():
-    fruits=fruits.union(Set(v))
+     fruits=fruits.union(Set(v))
 k=0
 for f in fruits:
     vertex_pos[f]=(5,k)
@@ -89,11 +92,14 @@ vertex_pos
 {'blood orange': (5, 0), 'grape': (5, 1), 'apple': (5, 2), 'Purple': (-5, 0), 'plum': (5, 10), 'pomegranate': (5, 3), 'pear': (5, 4), 'Yellow': (-5, 3), 'orange': (5, 7), 'Green': (-5, 2), 'pineapple': (5, 6), 'Orange': (-5, 1), 'lemon': (5, 8), 'raspberry': (5, 9), 'banana': (5, 5), 'Red': (-5, 4), 'lime': (5, 11)}
 </output>
 </sage>
-<p>Now the graph looks like a conventional graph for a relation between two different sets.  Notice that it's not a function</p>
+<p>Now the graph looks like a conventional graph for a relation between two different sets.  Notice that it's not a function.</p>
 <sage>
 <input>
 DiGraph(fruit_color).plot(pos=vertex_pos,vertex_size=1)
 </input>
+<output>
+    Graphics object consisting of 33 graphics primitives
+</output>
 </sage>
 
 </subsection>

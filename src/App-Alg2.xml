@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="app-alg2"><title>The Invariant Relation Theorem</title>
-<subsection><title>Two Exponentiation Algorthms</title>
+<subsection><title>Two Exponentiation Algorithms</title>
 <p>Consider the following algorithm implemented in Sage to compute <m>a^m mod \, n</m>, given an arbitrary integer <m>a</m>, non-negative exponent <m>m</m>, and a modulus <m>n</m>, <m>n \ge 0</m>.  The default sample evaluation computes <m>2^5\, mod\,7 = 32\,mod\,7 = 4</m>, but you can edit the final line for other inputs. </p>
 
-<sage xml:id="alg-slow-exp">
+<sage>
 <input>
 def slow_exp(a,m,n):
-	b=1
-	k=m
-	while k>0:
-		b=(b*a)%n  # % is integer remainder (mod) operation
-		k-=1
-	return b
-	
+    b=1
+    k=m
+    while k>0:
+        b=(b*a)%n  # % is integer remainder (mod) operation
+        k-=1
+    return b
 slow_exp(2,5,7)
 </input>
+<output>
+4
+</output>
 </sage>
 
 <p>It should be fairly clear that this algorithm will successfully compute <m>a^m (mod\, n)</m> since it mimics the basic definition of exponentiation.  However, this algorithm is highly inefficient.  The algorithm that is most commonly used for the task of exponentiation is the following one, also implemented in Sage.</p>
@@ -22,15 +24,14 @@ slow_exp(2,5,7)
 <sage>
 <input>
 def fast_exp(a,m,n):
-	t=a
-	b=1
-	k=m
-	while k>0:
-		if k%2==1: b=(b*t)%n
-		t=(t^2)%n
-		k=k//2  # // is the integer quotient operation
-	return b
-	
+    t=a
+    b=1
+    k=m
+    while k>0:
+        if k%2==1: b=(b*t)%n
+        t=(t^2)%n
+        k=k//2  # // is the integer quotient operation
+    return b    
 fast_exp(2,5,7)
 </input>
 </sage>
@@ -38,7 +39,7 @@ fast_exp(2,5,7)
 </subsection>
 <subsection><title>Proving the correctness of the fast algorithm</title>
 <definition xml:id="def-pre-post-values"><title>Pre and Post Values</title><notation><usage>\grave x,  \acute x</usage><description>pre and post values of a variable <m>x</m></description></notation><statement>
-<p>Given a variable <m>x</m>, the pre value of <m>x</m>, denoted <m>\grave x</m>, is the value before an iteration of a loop.  The post value, denoted \(\acute x\), is the value after the iteration.</p></statement></definition>
+<p>Given a variable <m>x</m>, the pre value of <m>x</m>, denoted <m>\grave x</m>, is the value before an iteration of a loop.  The post value, denoted <m>\acute x</m>, is the value after the iteration.</p></statement></definition>
 
 <example xml:id="ex-pre-post-fast"><title>Pre and post values in the fast exponentiation algorithm</title><p>In the fast exponentiation algorithm, the relationships between the pre and post values of the three variables are as follows.
 <me>\acute{b} \equiv \grave{b} \grave{t}^{\grave{k} mod\,2}(mod\, n)</me>
@@ -50,7 +51,7 @@ fast_exp(2,5,7)
 <definition xml:id="def-invariant-relation"><title>Invariant Relation</title><statement><p>Given an algorithm's inputs and a set of variables that are used in the algorithm, an <em>invariant relation</em> is a set of one or more equations that are true prior to entering a loop and remain true in every iteration of the loop.</p></statement>
 </definition>
 
-<example xml:id="ex-invariant-fast-expo"><title>Invariant Relation for Fast Exponentiation</title><statement><p>We claim that the invariant relation in the fast algorithm is <m>b t^k = a^m (mod\,n)</m>.  We will prove that his is indeed true below.</p></statement></example>
+<example xml:id="ex-invariant-fast-expo"><title>Invariant Relation for Fast Exponentiation</title><statement><p>We claim that the invariant relation in the fast algorithm is <m>b t^k = a^m (mod\,n)</m>.  We will prove that this is indeed true below.</p></statement></example>
 
 <theorem xml:id="th-invariant-relation-theorem"><title>The Invariant Relation Theorem</title>
 <statement>
@@ -78,7 +79,7 @@ which verifies the correctness of the algorithm.
 </p>
 </subsection>
 <exercises xml:id="exercises-app-alg1">
-<title>Exercises for Part 2 of the Algorithms Appendix</title>
+<title>Exercises</title>
 <exercise number="1">
 <statement><p>How are the pre and post values in the slow exponentiation algorithm related? What is the invariant relation between the variables in the slow algorithm?</p></statement>
 </exercise>
@@ -87,16 +88,18 @@ which verifies the correctness of the algorithm.
 <sage>
 <input>
 def gcd(a,b):
-	r0=a
-	r1=b
-	while r1 !=0:
-		t= r0 % r1
-		r0=r1
-		r1=t
-	return r0
-	
+    r0=a
+    r1=b
+    while r1 !=0:
+        t= r0 % r1
+        r0=r1
+        r1=t
+    return r0
 gcd(1001,154)  #test
 </input>
+<output>
+77
+</output>
 </sage>
 </statement>
 <hint><p>The invariant of this algorithm is <m>gcd(r0,r1)=gcd(a,b)</m>.</p>

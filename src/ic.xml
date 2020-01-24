@@ -15,7 +15,7 @@
 <!--    to preserve numbering and cross-references! -->
 <!--    So it is never advisable to edit this file  -->
 
-<mathbook xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
+<pretext xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
 
   		<xi:include href="./bookinfo.xml" />    <!--ISBN, website, other metadata -->
     
@@ -23,11 +23,11 @@
         <title>Applied Discrete Structures</title>
  		<xi:include href="./frontmatter_ic.xml" />            
 <!-- 
- 		 		<xi:include href="./XC11.xml" />
+ 		 		<xi:include href="./XC1.xml" />
 				
  -->
-	 			<xi:include href="./XC12plus6.xml" />
+	 			<xi:include href="./XC1.xml" />
 	<xi:include href="./backmatter-ic.xml" />            
     </book>
 
-</mathbook>
+</pretext>
